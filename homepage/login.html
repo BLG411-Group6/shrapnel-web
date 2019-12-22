@@ -1,0 +1,63 @@
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        jQuery.support.cors = true;
+        jQuery.ajax({
+            type: "POST",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{csrf_token}}"
+            },
+            url: "https://shrapnel-api.herokuapp.com/api/users/login/",
+            data: JSON.stringify({ "username": username, "password": password, }),
+            success: function (response) {
+                localStorage["token"] = response["token"];
+            }
+        });
+        $("#container").load("home.html");
+    }
+</script>
+
+<div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+        <div class="d-flex justify-content-center">
+            <div class="brand_logo_container">
+                <img src="profile.png" class="brand_logo" alt="Logo">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center form_container">
+            <div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input id="username" type="text" name="username" class="form-control input_user"
+                        placeholder="username">
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input id="password" type="password" name="password" class="form-control input_pass"
+                        placeholder="password">
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Remember me</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <button onclick="login()" class="btn login_btn">Login</button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+                Don't have an account? <a onclick="gotoRegister()" href="#" class="ml-2">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>

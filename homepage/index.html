@@ -1,120 +1,94 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 
+<script>
+    function editNavbar() {
+        if (localStorage.getItem("token") === null) {
+            $('#logoutTab').hide();
+            $('#messageTab').hide();
+            $('#profileTab').hide();
+            $('#loginTab').show();
+        }
+        else {
+            $('#loginTab').hide();
+            $('#logoutTab').show();
+            $('#messageTab').show();
+            $('#profileTab').show();
+        }
+    }
+
+    $(document).ready(editNavbar);
+
+    function userLogout() {
+        localStorage.clear();
+    }
+
+    function gotoLogin() {
+        $("#container").load("login.html");
+    }
+
+    function gotoRegister() {
+        $("#container").load("register.html");
+    }
+
+    setInterval(editNavbar, 50);
+</script>
+
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Shrapnel</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/shop-item.css" rel="stylesheet">
-
+    <title>Shrapnel</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Shrapnel</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-        <h1 class="my-4">Shrapnel</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <a class="navbar-brand" href="index.html">Shrapnel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </ul>
         </div>
-      </div>
-      <!-- /.col-lg-3 -->
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="loginTab" onclick="gotoLogin()" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profileTab" href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="messageTab" href="#">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logoutTab" href="#" onclick="userLogout()">Logout</a>
+                </li>
+                <img src="profile.png" style="border-radius: 25px; width: 50px; height: 50px;" class="img-fluid">
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-      <div class="col-lg-9" style="padding: 50px">
-
-        <a href="create_topic.html" class="btn btn-success">Create a Topic</a>
-        <a href="polls.html" class="btn btn-success">Create a Poll</a>
-        <!-- /.card -->
-
-        <script>
-        var request = new XMLHttpRequest()
-
-        // Open a new connection, using the GET request on the URL endpoint
-        request.open('GET', 'https://shrapnel-api.herokuapp.com/api/topics/', true)
-
-        request.onload = function() {
-          // Begin accessing JSON data here
-          var data = JSON.parse(this.response)
-          if (request.status >= 200 && request.status < 400) {
-              data.forEach(item => {
-                console.log(item.title)
-              })
-            } else {
-              console.log('error')
-            }
-        }
-
-        // Send request
-        request.send()
-
-
-
-        </script>
-        <!-- /.card -->
-
-      </div>
-      <!-- /.col-lg-9 -->
-
+    <div class="container" id="container">
     </div>
-
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
