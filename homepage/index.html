@@ -46,6 +46,10 @@
         $("#container").load("polls.html");
     }
 
+    function gotoProfile() {
+        $("#container").load("profile.html");
+    }
+
     function searchContent() {
         var searchContent = document.getElementById('search').value;
     }
@@ -94,7 +98,7 @@
                     <a class="nav-link" id="loginTab" onclick="gotoLogin()" href="#">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profileTab" href="profile.html">Profile</a>
+                    <a class="nav-link" id="profileTab" onclick="gotoProfile()" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="messageTab" href="#">Messages</a>
