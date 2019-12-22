@@ -1,122 +1,87 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!DOCTYPE html>
-<html>
-
-
 <script>
-    function userRegistration() {
+    function register() {
         var email = document.getElementById('email').value;
         var username = document.getElementById('username').value;
         var first_name = document.getElementById('first_name').value;
         var last_name = document.getElementById('last_name').value;
         var password = document.getElementById('password').value;
         var repeated_password = document.getElementById('repeated_password').value;
-
-        $.ajax({
+        jQuery.support.cors = true;
+        jQuery.ajax({
             type: "POST",
-            url: "https://shrapnel-api.herokuapp.com/api/users/register/",
-            csrfmiddlewaretoken: "{{ csrf_token }}",
             crossDomain: true,
-            data: JSON.stringify({
-                "email": email,
-                "username": username,
-                "first_name": first_name,
-                "last_name": last_name,
-                "password": password,
-                "repeated_password": repeated_password
-            }),
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{csrf_token}}"
             },
-            success: function () {
-                alert("Saved! It worked.");
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+            url: "https://shrapnel-api.herokuapp.com/api/users/register/",
+            data: JSON.stringify({  
+                                    "email": email,
+                                    "username": username, 
+                                    "first_name": first_name,
+                                    "last_name": last_name,
+                                    "password": password,
+                                    "repeated_password": repeated_password,    
+                                }),
+            success: function (response) {
             }
         });
+        $("#container").load("home.html");
     }
 </script>
 
 
-<head>
-    <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-</head>
-
-<body>
-    <div id="nav-placeholder"></div>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script>
-        $.get("navbar.html", function (data) {
-            $("#nav-placeholder").replaceWith(data);
-        });
-    </script>
-    <div class="big container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="user_card">
-                <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container">
-                        <img src="profile.png" class="brand_logo" alt="Logo">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center form_container">
-                    <form>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input id="email" type="text" class="form-control input_user" placeholder="email">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input id="username" type="text" class="form-control input_user" placeholder="username">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input id="first_name" type="text" class="form-control input_user" placeholder="first name">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input id="last_name" type="text" class="form-control input_user" placeholder="last name">
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input id="password" type="password" class="form-control input_pass" placeholder="password">
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input id="repeated_password" type="password" class="form-control input_pass"
-                                placeholder="password again">
-                        </div>
-
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button onClick="userRegistration()" type="button" class="btn login_btn">Register</button>
-                        </div>
-                    </form>
-                </div>
+<div class="d-flex justify-content-center h-100">
+    <div class="user_card" style="height: 500;">
+        <div class="d-flex justify-content-center">
+            <div class="brand_logo_container">
+                <img src="profile.png" class="brand_logo" alt="Logo">
             </div>
         </div>
-    </div>
-</body>
+        <div class="d-flex justify-content-center form_container">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input id="email" type="text" class="form-control input_user" placeholder="email">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input id="username" type="text" class="form-control input_user" placeholder="username">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input id="first_name" type="text" class="form-control input_user" placeholder="first name">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input id="last_name" type="text" class="form-control input_user" placeholder="last name">
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input id="password" type="password" class="form-control input_pass" placeholder="password">
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input id="repeated_password" type="password" class="form-control input_pass"
+                        placeholder="password again">
+                </div>
 
-</html>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <button onClick="register()" type="button" class="btn login_btn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
