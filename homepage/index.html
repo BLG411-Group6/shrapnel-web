@@ -21,7 +21,9 @@
         }
     }
 
-    $(document).ready(editNavbar);
+    $(document).ready(function(){
+        $("#container").load("home.html");
+    });
 
     function userLogout() {
         localStorage.clear();
@@ -52,6 +54,7 @@
 
     function searchContent() {
         var searchContent = document.getElementById('search').value;
+        getTopics(searchContent);
     }
 
     setInterval(editNavbar, 50);
