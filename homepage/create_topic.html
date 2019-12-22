@@ -1,15 +1,43 @@
-<div class="row" >
+<script>
+  function createTopic() {
+    var title = document.getElementById('text').value;
+    var content = document.getElementById('content').value;
+    var id;
+    jQuery.support.cors = true;
+    jQuery.ajax({
+      type: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{csrf_token}}",
+        "Authorization": "Token " + localStorage["token"]
+      },
+      url: "https://shrapnel-api.herokuapp.com/api/topics/",
+      data: JSON.stringify({ "title": title, }),
+      success: function (response) {
+        console.log(response)
+        id = response["id"];
+        jQuery.ajax({
+          type: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{csrf_token}}",
+            "Authorization": "Token " + localStorage["token"]
+          },
+          url: "https://shrapnel-api.herokuapp.com/api/topics/" + id + "/entries/",
+          data: JSON.stringify({ "content": content, }),
+          success: function (response) {
+          }
+        });
+      }
+    });
 
-  <div class="col-lg-3">
-    <h1 class="my-4">Trending Now</h1>
-    <div class="list-group">
-      <a href="#" class="list-group-item active">Category 1</a>
-      <a href="#" class="list-group-item">Category 2</a>
-      <a href="#" class="list-group-item">Category 3</a>
-    </div>
-  </div>
+    $("#container").load("home.html");
+  }
+</script>
 
-
+<div class="row">
   <div class="col-lg-9">
     <div class="card card-outline-secondary my-4">
       <div class="card-header">
@@ -27,21 +55,15 @@
           <div class="form-group row">
             <label for="textarea" class="col-12 col-form-label">First Entry </label>
             <div class="col-12">
-              <textarea id="textarea" name="textarea" placeholder="Enter Entry" cols="40" rows="5" class="form-control"
-                required="required"></textarea>
+              <input id="content" name="textarea" placeholder="Enter Entry" cols="40" rows="5" class="form-control"
+                required="required"></input>
             </div>
-
           </div>
-          <button class="btn btn-success">Submit</button>
+          <a class="btn btn-success" onclick="createTopic()" href="#">Create</a>
         </form>
       </div>
     </div>
-
-
   </div>
 
 
 </div>
-
-
-<script type="text/javascript" src="entries.js"></script>

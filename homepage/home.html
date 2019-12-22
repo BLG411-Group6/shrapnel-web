@@ -1,46 +1,78 @@
-<div class="container">
+<script>
+  function getTopicEntries(topicId) {
+    jQuery.support.cors = true;
+    jQuery.ajax({
+      type: "GET",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{csrf_token}}"
+      },
+      url: "https://shrapnel-api.herokuapp.com/api/topics/" + topicId + "/entries/",
+      success: function (response) {
+        response.forEach(item => {
+          $("#entries").append('<div class="list-group-item" id="entry' + item.id + '"><h3>' + item.content + '</h3></div>');
+          $("#entry" + item.id).append("<br>");
+          $("#entry" + item.id).append('<h5>' + item.user.username + '</h5 >');
+          var date = new Date(item.date_created);
+          $("#entry" + item.id).append('<small class="text-muted">' + date.toDateString() + '</small>');
+        })
+      }
+    });
+    $("#container").load("home.html");
+  }
+</script>
 
-  <div class="row">
-
-    <div class="col-lg-3">
-      <h1 class="my-4">Shrapnel</h1>
-      <div class="list-group">
-        <a href="#" class="list-group-item active">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        <a href="#" class="list-group-item">Category 3</a>
-      </div>
+<div class="row">
+  <div class="col-lg-3">
+    <h1 class="my-4">Shrapnel</h1>
+    <div id="topics" class="list-group">
     </div>
-    <!-- /.col-lg-3 -->
+  </div>
 
-    <div class="col-lg-9" style="padding: 50px">
+  <div class="col-lg-9" style="padding: 50px">
+    <div id="entries" class="list-group">
+      <div id="entry-content"></div>
+    </div>
+  </div>
 
-      <a href="create_topic.html" class="btn btn-success">Create a Topic</a>
-      <a href="polls.html" class="btn btn-success">Create a Poll</a>
-      <!-- /.card -->
+  <script>
+    var request = new XMLHttpRequest()
+    request.open('GET', 'https://shrapnel-api.herokuapp.com/api/topics/', true)
+    request.onload = function () {
+      // Begin accessing JSON data here
+      var data = JSON.parse(this.response)
+      if (request.status >= 200 && request.status < 400) {
+        data.forEach(item => {
+          $("#topics").append('<a href="#" onClick="getTopicEntries(' + item.id + ')" class="list-group-item">' + item.title + '</a>');
+        })
+      } else {
+        console.log('error')
+      }
+    }
+    request.send()
 
-      <script>
+    function getTopics(keywords) {
+      var url = "https://shrapnel-api.herokuapp.com/api/topics"
+      var keywords = keywords || "";
+      if (keywords) {
+        url += "?keywords=" + keywords.split(" ")
+      }
       var request = new XMLHttpRequest()
-
-      // Open a new connection, using the GET request on the URL endpoint
-      request.open('GET', 'https://shrapnel-api.herokuapp.com/api/topics/', true)
-
-      request.onload = function() {
+      request.open('GET', url, true)
+      request.onload = function () {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
-            data.forEach(item => {
-              console.log(item.title)
-            })
-          } else {
-            console.log('error')
-          }
+          $("#topics").html("");
+          data.forEach(item => {
+            $("#topics").append('<a href="#" onClick="getTopicEntries(' + item.id + ')" class="list-group-item">' + item.title + '</a>');
+          })
+        } else {
+          console.log('error')
+        }
       }
-
-      // Send request
       request.send()
-
-
-
-      </script>
-
-    </div>
+    }
+  </script>
+</div>
