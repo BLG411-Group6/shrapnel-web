@@ -1,5 +1,5 @@
 
-
+<div id="cont" class="container">
   <div class="row">
 
     <div class="col-lg-3">
@@ -23,7 +23,7 @@
               <label for="text" class="col-12 col-form-label">Question</label>
               <div class="col-12">
                 <input id="text" name="text" placeholder="Enter Question here" class="form-control" required="required"
-                  type="text">
+                  type="text"></input>
               </div>
             </div>
             <div id="choices" class="col-12" <label for="text" class="col-label">Options</label>
@@ -31,37 +31,7 @@
             <div class=" col-12 form-group">
               <button id="choice" class="btn btn-primary">+Choice</button>
             </div>
-            <script>
-
-              var options = [];
-              document.getElementById('choice').addEventListener('click', function (e) {
-                const choices = document.getElementById('choices')
-                const form = document.createElement('form')
-                form.setAttribute('class', "form-inline")
-
-                //const card =  document.createElement('div')
-                const delete1 = document.createElement('button')
-                delete1.setAttribute('class', "btn btn-primary p-0")
-                delete1.setAttribute('type', "submit")
-                delete1.setAttribute('id', "rm_btn")
-                delete1.style.width = "20px";
-                delete1.style.height = "35px";
-                const p = document.createElement('p')
-                p.textContent = 'x'
-                delete1.appendChild(p)
-
-                const box = document.createElement('input')
-                box.setAttribute('class', 'form-control here')
-                box.setAttribute('name', 'text')
-                box.setAttribute('placeholder', 'Enter option')
-
-                form.appendChild(box);
-                form.appendChild(delete1);
-                choices.appendChild(form)
-
-              });
-
-            </script>
+            <script type="text/javascript" src="add_options.js"></script>
             <div class=" col-12 form-group">
               <button id='final' class="col-4 btn btn-success">Create Poll</button>
             </div>
@@ -72,77 +42,6 @@
       </div>
 
     </div>
-
-    <script>
-      //SCRIPT TO BE USED FOR REQUESTS
-      document.querySelector('#final').addEventListener('click', function (e) {
-
-        e.preventDefault();
-        var question = document.getElementById('text')
-        var options = document.getElementsByClassName('form-control here')
-        console.log(question.value)
-        var options_text = []
-        for (var i = 0; i < options.length; i++) {
-          options_text.push(options[i].value)
-          console.log(options[i].value);
-          //Do something
-        }
-        const cont = document.getElementById('cont')
-        const card = document.createElement('div')
-        card.setAttribute('class', 'card card-outline-secondary my-4')
-
-        const card_header = document.createElement('div')
-        card_header.setAttribute('class', 'card-header')
-
-        const p1 = document.createElement('p')
-        p1.textContent = question.value;
-        card_header.appendChild(p1);
-
-        card.appendChild(card_header);
-
-        const card_body = document.createElement('div');
-        card_body.setAttribute('class', 'card-body');
-
-        options_text.forEach(createRadioElement)
-
-        function createRadioElement(item) {
-
-          var div = document.createElement('div');
-          div.setAttribute('class', 'form-check');
-
-          var radioInput = document.createElement('input');
-          radioInput.setAttribute('class', 'form-check-input');
-          radioInput.setAttribute('type', 'radio')
-          radioInput.setAttribute('name', 'radiogroup')
-          div.appendChild(radioInput)
-
-          var label = document.createElement('label');
-          label.setAttribute('class', 'form-check-label')
-          var p = document.createElement('p')
-          p.textContent = item
-          label.appendChild(p)
-
-          div.appendChild(label);
-          card_body.appendChild(div)
-
-        }
-        card.appendChild(card_body)
-
-        const div1 = document.createElement('div')
-        div1.setAttribute('class', 'col-12 form group');
-        var bbtn = document.createElement('button')
-        bbtn.setAttribute('class', "btn btn-success")
-        bbtn.setAttribute('type', "submit")
-
-        const vote = document.createElement('p')
-        vote.textContent = 'Vote'
-        bbtn.appendChild(vote)
-        bbtn.style.width = "60px";
-        bbtn.style.height = "40px";
-        div1.style.padding = '0px 20px 20px 20px';
-        div1.appendChild(bbtn)
-        card.appendChild(div1)
-        cont.appendChild(card)
-
-      });
-    </script>
+</div>
+    <script type="text/javascript" src="create_poll.js"></script>
+</div>
