@@ -1,221 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <div class="row">
 
-  <title>Shrapnel</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/shop-item.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Shrapnel</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
+    <div class="col-lg-3">
+      <h1 class="my-4">Trending Now</h1>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">Category 1</a>
+        <a href="#" class="list-group-item">Category 2</a>
+        <a href="#" class="list-group-item">Category 3</a>
       </div>
     </div>
-  </nav>
+    <!-- /.col-lg-3 -->
 
-  <!-- Page Content -->
-  <div id="cont" class="container">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-        <h1 class="my-4">Trending Now</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+    <div class="col-lg-9">
+      <div class="card card-outline-secondary my-4">
+        <div class="card-header">
+          Create a Poll
         </div>
-      </div>
-      <!-- /.col-lg-3 -->
+        <div class="col-md-8">
+          <div id='form1' class="form group">
+            <div class="form-group">
+              <label for="text" class="col-12 col-form-label">Question</label>
+              <div class="col-12">
+                <input id="text" name="text" placeholder="Enter Question here" class="form-control" required="required"
+                  type="text">
+              </div>
+            </div>
+            <div id="choices" class="col-12" <label for="text" class="col-label">Options</label>
+            </div>
+            <div class=" col-12 form-group">
+              <button id="choice" class="btn btn-primary">+Choice</button>
+            </div>
+            <script>
 
-      <div class="col-lg-9">
-        <div class="card card-outline-secondary my-4">
-          <div class="card-header">
-            Create a Poll
+              var options = [];
+              document.getElementById('choice').addEventListener('click', function (e) {
+                const choices = document.getElementById('choices')
+                const form = document.createElement('form')
+                form.setAttribute('class', "form-inline")
+
+                //const card =  document.createElement('div')
+                const delete1 = document.createElement('button')
+                delete1.setAttribute('class', "btn btn-primary p-0")
+                delete1.setAttribute('type', "submit")
+                delete1.setAttribute('id', "rm_btn")
+                delete1.style.width = "20px";
+                delete1.style.height = "35px";
+                const p = document.createElement('p')
+                p.textContent = 'x'
+                delete1.appendChild(p)
+
+                const box = document.createElement('input')
+                box.setAttribute('class', 'form-control here')
+                box.setAttribute('name', 'text')
+                box.setAttribute('placeholder', 'Enter option')
+
+                form.appendChild(box);
+                form.appendChild(delete1);
+                choices.appendChild(form)
+
+              });
+
+            </script>
+            <div class=" col-12 form-group">
+              <button id='final' class="col-4 btn btn-success">Create Poll</button>
+            </div>
+            </form>
           </div>
-          <div class="col-md-8">
-                           <div id='form1' class="form group">
-                             <div class="form-group">
-                               <label for="text" class="col-12 col-form-label">Question</label>
-                               <div class="col-12">
-                                 <input id="text" name="text" placeholder="Enter Question here" class="form-control" required="required" type="text">
-                               </div>
-                             </div>
-                             <div id="choices" class="col-12"
-                             <label for="text" class="col-label">Options</label>
-                            </div>
-                             <div class=" col-12 form-group">
-                                <button id="choice" class="btn btn-primary">+Choice</button>
-                             </div>
-                            <script>
-
-                                var options = [];
-                                document.getElementById('choice').addEventListener('click', function (e) {
-                                const choices = document.getElementById('choices')
-                                const form = document.createElement('form')
-                                form.setAttribute('class',"form-inline")
-
-                                //const card =  document.createElement('div')
-                                const delete1 = document.createElement('button')
-                                delete1.setAttribute('class',"btn btn-primary p-0")
-                                delete1.setAttribute('type',"submit")
-                                delete1.setAttribute('id',"rm_btn")
-                                delete1.style.width = "20px";
-                                delete1.style.height = "35px";
-                                const p = document.createElement('p')
-                                p.textContent = 'x'
-                                delete1.appendChild(p)
-
-                                const box = document.createElement('input')
-                                box.setAttribute('class','form-control here')
-                                box.setAttribute('name','text')
-                                box.setAttribute('placeholder','Enter option')
-
-                                form.appendChild(box);
-                                form.appendChild(delete1);
-                                choices.appendChild(form)
-
-                            });
-
-                            </script>
-                            <div class=" col-12 form-group">
-                                 <button id='final' class="col-4 btn btn-success">Create Poll</button>
-                             </div>
-                           </form>
-                       </div>
         </div>
-        <!-- /.card -->
 
       </div>
-      <!-- /.col-lg-9 -->
 
     </div>
-<!--/.row-->
 
-<script>
-//SCRIPT TO BE USED FOR REQUESTS
-document.querySelector('#final').addEventListener('click', function (e) {
+    <script>
+      //SCRIPT TO BE USED FOR REQUESTS
+      document.querySelector('#final').addEventListener('click', function (e) {
 
-    e.preventDefault();
-    var question = document.getElementById('text')
-    var options = document.getElementsByClassName('form-control here')
-    console.log(question.value)
-    var options_text = []
-    for (var i = 0; i < options.length; i++) {
-        options_text.push(options[i].value)
-        console.log(options[i].value);
-        //Do something
-    }
-    const cont = document.getElementById('cont')
-    const card = document.createElement('div')
-    card.setAttribute('class', 'card card-outline-secondary my-4')
+        e.preventDefault();
+        var question = document.getElementById('text')
+        var options = document.getElementsByClassName('form-control here')
+        console.log(question.value)
+        var options_text = []
+        for (var i = 0; i < options.length; i++) {
+          options_text.push(options[i].value)
+          console.log(options[i].value);
+          //Do something
+        }
+        const cont = document.getElementById('cont')
+        const card = document.createElement('div')
+        card.setAttribute('class', 'card card-outline-secondary my-4')
 
-    const card_header = document.createElement('div')
-    card_header.setAttribute('class', 'card-header')
+        const card_header = document.createElement('div')
+        card_header.setAttribute('class', 'card-header')
 
-    const p1 = document.createElement('p')
-    p1.textContent = question.value;
-    card_header.appendChild(p1);
+        const p1 = document.createElement('p')
+        p1.textContent = question.value;
+        card_header.appendChild(p1);
 
-    card.appendChild(card_header);
+        card.appendChild(card_header);
 
-    const card_body = document.createElement('div');
-    card_body.setAttribute('class', 'card-body');
+        const card_body = document.createElement('div');
+        card_body.setAttribute('class', 'card-body');
 
-    options_text.forEach(createRadioElement)
+        options_text.forEach(createRadioElement)
 
-    function createRadioElement(item){
+        function createRadioElement(item) {
 
-        var div = document.createElement('div');
-        div.setAttribute('class','form-check');
+          var div = document.createElement('div');
+          div.setAttribute('class', 'form-check');
 
-        var radioInput = document.createElement('input');
-        radioInput.setAttribute('class', 'form-check-input');
-        radioInput.setAttribute('type','radio')
-        radioInput.setAttribute('name','radiogroup')
-        div.appendChild(radioInput)
+          var radioInput = document.createElement('input');
+          radioInput.setAttribute('class', 'form-check-input');
+          radioInput.setAttribute('type', 'radio')
+          radioInput.setAttribute('name', 'radiogroup')
+          div.appendChild(radioInput)
 
-        var label = document.createElement('label');
-        label.setAttribute('class','form-check-label')
-        var p = document.createElement('p')
-        p.textContent = item
-        label.appendChild(p)
+          var label = document.createElement('label');
+          label.setAttribute('class', 'form-check-label')
+          var p = document.createElement('p')
+          p.textContent = item
+          label.appendChild(p)
 
-        div.appendChild(label);
-        card_body.appendChild(div)
+          div.appendChild(label);
+          card_body.appendChild(div)
 
-    }
-    card.appendChild(card_body)
+        }
+        card.appendChild(card_body)
 
-    const div1 = document.createElement('div')
-    div1.setAttribute('class','col-12 form group');
-    var bbtn = document.createElement('button')
-    bbtn.setAttribute('class',"btn btn-success")
-    bbtn.setAttribute('type',"submit")
+        const div1 = document.createElement('div')
+        div1.setAttribute('class', 'col-12 form group');
+        var bbtn = document.createElement('button')
+        bbtn.setAttribute('class', "btn btn-success")
+        bbtn.setAttribute('type', "submit")
 
-    const vote = document.createElement('p')
-    vote.textContent = 'Vote'
-    bbtn.appendChild(vote)
-    bbtn.style.width = "60px";
-    bbtn.style.height = "40px";
-    div1.style.padding = '0px 20px 20px 20px';
-    div1.appendChild(bbtn)
-    card.appendChild(div1)
-    cont.appendChild(card)
+        const vote = document.createElement('p')
+        vote.textContent = 'Vote'
+        bbtn.appendChild(vote)
+        bbtn.style.width = "60px";
+        bbtn.style.height = "40px";
+        div1.style.padding = '0px 20px 20px 20px';
+        div1.appendChild(bbtn)
+        card.appendChild(div1)
+        cont.appendChild(card)
 
-});
-</script>
-</div>
-<!-- /.container -->
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-
-</body>
-
-</html>
+      });
+    </script>
