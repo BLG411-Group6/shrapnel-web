@@ -17,7 +17,7 @@
     <link href="css/shop-item.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: #00242B">
 
     <!-- Navigation -->
     <div id="nav-placeholder">
@@ -32,53 +32,38 @@
 
     <!-- Page Content -->
     <div class="container">
-
+        <div class="row class d-flex justify-content-center align-bottom" style="color: white; font-size:x-large;" >Profile Customization Page</div>
         <div class="row mt-3">
-            <div class="col-md-4">
-                <img alt="User Profile Picture" src="/" class="rounded-circle mx-auto d-block mt-3 mb-3" />
+            <div class="col-md-4 mr-3">
+                <img alt="User Profile Picture" style="color: white" src="/teyze.png" class="rounded-circle mx-auto d-block mt-3 mb-3" />
             </div>
-            <div class="d-flex align-items-start flex-column" id="enes">
+            <div class="class d-flex justify-content-center">
                 <form role="form">
                     <div class="form-group">
-
-                        <label for="Username">
-                            Username
-                        </label>
-                        <input type="text" class="form-control" id="Username" />
+                        <input type="text" class="form-control" id="Username" value="Username" />
                     </div>
                     <div class="form-group">
-
-                        <label for="firstname">
-                            Firstname
-                        </label>
-                        <input type="text" class="form-control" id="firstname" />
+                        <input type="text" class="form-control" id="firstname" value="Firstname" />
                     </div>
                     <div class="form-group">
-
-                        <label for="lastname">
-                            Lastname
-                        </label>
-                        <input type="text" class="form-control" id="lastname" />
+                        <input type="text" class="form-control" id="lastname" value="Lastname" />
                     </div>
                     <div class="form-group">
-                        <label for="password">
-                            Change Password
-                        </label>
-                        <input type="password" class="form-control" id="password" />
-                    </div>
-                    <label for="bio">Bio</label>
-                    <div class="input-group">
-                        <textarea class="form-control form-control-lg"></textarea>
+                        <input type="password" class="form-control" id="password" value="password" />
                     </div>
                     <div class="form-group">
-                        <label for="profilePicture">
-                            File input
-                        </label>
-                        <input type="file" class="form-control-file" id="profilePicture" />
+                        <textarea class="form-control form-control-lg" placeholder="this text will show in the textarea"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        Update Profile
-                    </button>
+                    <div class="form-group ">
+                        <div class="class d-flex justify-content-center mb-1" style="color: white; font-size: large;">Upload Picture</div>
+                        <input type="file" class="form-control-file ml-1" style="color: white" id="profilePicture" />
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-danger">
+                            Update Profile
+                        </button>
+                    </div>
+                   
                 </form>
             </div>
         </div>
