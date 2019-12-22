@@ -49,12 +49,12 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div id="cont" class="container">
 
     <div class="row">
 
       <div class="col-lg-3">
-        <h1 class="my-4">Shrapnel</h1>
+        <h1 class="my-4">Trending Now</h1>
         <div class="list-group">
           <a href="#" class="list-group-item active">Category 1</a>
           <a href="#" class="list-group-item">Category 2</a>
@@ -63,46 +63,42 @@
       </div>
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9" style="padding: 50px">
+      <div class="col-lg-9">
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Create a Topic
+          </div>
+          <div class="col-md-8">
+                           <form class="form1">
+                             <div class="form-group row">
+                               <label for="text" class="col-12 col-form-label">Topic Name</label>
+                               <div class="col-12">
+                                 <input id="text" name="text" placeholder="Enter Title here" class="form-control here" required="required" type="text">
+                               </div>
+                             </div>
+                             <div class="form-group row">
+                               <label for="textarea" class="col-12 col-form-label">First Entry </label>
+                               <div class="col-12">
+                                 <textarea id="textarea" name="textarea" placeholder="Enter Entry" cols="40" rows="5" class="form-control" required="required"></textarea>
+                               </div>
 
-        <a href="create_topic.html" class="btn btn-success">Create a Topic</a>
-        <a href="polls.html" class="btn btn-success">Create a Poll</a>
-        <!-- /.card -->
-
-        <script>
-        var request = new XMLHttpRequest()
-
-        // Open a new connection, using the GET request on the URL endpoint
-        request.open('GET', 'https://shrapnel-api.herokuapp.com/api/topics/', true)
-
-        request.onload = function() {
-          // Begin accessing JSON data here
-          var data = JSON.parse(this.response)
-          if (request.status >= 200 && request.status < 400) {
-              data.forEach(item => {
-                console.log(item.title)
-              })
-            } else {
-              console.log('error')
-            }
-        }
-
-        // Send request
-        request.send()
-
-
-
-        </script>
+                             </div>
+                                 <button class="btn btn-success">Submit</button>
+                           </form>
+                       </div>
+        </div>
         <!-- /.card -->
 
       </div>
       <!-- /.col-lg-9 -->
 
     </div>
+<!--/.row-->
 
-  </div>
-  <!-- /.container -->
+  <script type="text/javascript" src="entries.js" ></script>
 
+</div>
+<!-- /.container -->
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -114,6 +110,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 
 </body>
 
